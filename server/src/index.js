@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-console.log("Porta: localhost:3333");
+// console.log("Porta: localhost:3333");
 app.use(routes);
 
 app.listen(3333);
