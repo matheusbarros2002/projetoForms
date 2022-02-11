@@ -17,7 +17,6 @@ import Chart from "react-google-charts";
 import Swal from "sweetalert2";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
 import api from "../services/api";
 
 export default function personalidade() {
@@ -41,6 +40,11 @@ export default function personalidade() {
   const classes = useStyles();
   const [state, setState] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [sendResponse, setSendResponse] = useState(false);
+  const [send, setSend] = useState(false);
+  const [afterSending, setAfterSending] = useState(false);
+  const [afterResponse, setAfterResponse] = useState(false);
+
   // const [options, setOption] = useState("Resultado");
 
   // const dados = [pI, pO, pC, pA];
@@ -67,8 +71,14 @@ export default function personalidade() {
   async function handleSend() {
     setOpen(!open);
     setState([]);
-    console.log(state);
-    const response = await api.post("/res");
+    setSend(true);
+    setAfterSending(true);
+
+    // const response = await api.post("/res", {
+    //   state: 'c',
+    // });
+    // console.log(response);
+
     Swal.fire({
       title: "Sucesso!",
       text: `Dados enviador com Sucesso! \n `,
@@ -79,13 +89,8 @@ export default function personalidade() {
   }
 
   function result() {
-    <Chart
-      width={"500px "}
-      height={"300px "}
-      chartType="PieChart"
-      data={data}
-      options={options}
-    />;
+    setSendResponse(true);
+    setAfterResponse(true);
   }
 
   function refreshPage() {
@@ -676,7 +681,7 @@ export default function personalidade() {
             </MenuItem>
           </Select>
         </FormControl>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Typography fontSize={"1.8rem"} align="center">
             <Stack>
               <Button
@@ -686,8 +691,9 @@ export default function personalidade() {
                 type="submit"
                 onClick={handleSend}
                 size={"large"}
-                sx={{ marginRight: "10rem" }}
+                sx={{ marginRight: "1rem" }}
                 // disabled={state.length !== 25}
+                disabled={sendResponse === true || afterSending === true}
               >
                 {" "}
                 Enviar{" "}
@@ -696,7 +702,7 @@ export default function personalidade() {
           </Typography>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Typography fontSize={"1.8rem"} align="center">
             <Stack>
               <Button
@@ -706,7 +712,8 @@ export default function personalidade() {
                 type="submit"
                 onClick={result}
                 size={"large"}
-                // disabled={state.length !== 25}
+                sx={{ marginLeft: "1rem" }}
+                disabled={send === false || afterResponse === true }
               >
                 {" "}
                 Resultado{" "}
@@ -715,7 +722,7 @@ export default function personalidade() {
           </Typography>
         </Grid>
 
-        <Grid item xs={4}>
+        {/* <Grid item xs={4}>
           <Typography fontSize={"1.8rem"} align="center">
             <Stack>
               <Button
@@ -725,20 +732,35 @@ export default function personalidade() {
                 type="submit"
                 onClick={refreshPage}
                 size={"large"}
-                sx={{ marginLeft: "10rem" }}
+                // sx={{ marginLeft: "10rem" }}
               >
                 {" "}
-                Refazer Teste{" "}
+                Refazer{" "}
               </Button>
             </Stack>
           </Typography>
-        </Grid>
+        </Grid> */}
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
         >
           <CircularProgress color="inherit" />
         </Backdrop>
+        <Grid item xs={12}>
+          <Typography sx={{ marginTop: "2rem", fontSize: "1.1rem" }}>
+            {(() => {
+              if (sendResponse === true) {
+                return (
+                  <h1                    className={classes.typography}
+                    style={{ fontSize: "2rem", position: "" }}
+                  >
+                    Resultado
+                  </h1>
+                );
+              }
+            })()}
+          </Typography>
+        </Grid>
       </Grid>
     </Container>
   );
