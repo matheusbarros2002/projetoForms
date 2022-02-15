@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -14,12 +17,13 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Chart from "react-google-charts";
+import _ from "lodash";
 import Swal from "sweetalert2";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import api from "../services/api";
 
-export default function personalidade() {
+export default function personalidades() {
   const theme = createTheme();
   const useStyles = makeStyles(() => ({
     typography: {
@@ -44,53 +48,75 @@ export default function personalidade() {
   const [send, setSend] = useState(false);
   const [afterSending, setAfterSending] = useState(false);
   const [afterResponse, setAfterResponse] = useState(false);
+  const [chartData, setChartData] = useState([]);
 
-  // const [options, setOption] = useState("Resultado");
+  
 
-  // const dados = [pI, pO, pC, pA];
-  const a = state.filter((item) => item.opcao === "A");
-  const o = state.filter((item) => item.opcao === "O");
-  const i = state.filter((item) => item.opcao === "I");
-  const c = state.filter((item) => item.opcao === "C");
+  const [a, setA] = useState("");
+  const [o, setO] = useState("");
+  const [i, setI] = useState("");
+  const [c, setC] = useState("");
+
   const pA = a.length * 4;
   const pO = o.length * 4;
   const pI = i.length * 4;
   const pC = c.length * 4;
-  const [options, setOptions] = useState({
-    title: "Gráfico de Pizza",
-  });
 
-  const [data, setData] = useState([
-    ["Personalidades", "Porcentagem"],
-    ["Tubarao", a.length * 4],
-    ["Lobo", 123], //pO],
-    ["Aguia", 11], //pI],
-    ["Gato", 10], //pC],
-  ]);
+  function loadData(data) {
+    let values = _.map(data, (value) => [
+      value.personalidade,
+      value.porcentagem,
+    ]);
+
+    console.log("aaaa", [["Personalidade", "Porcentagem"], ...values]);
+
+    return [["Personalidade", "Porcentagem"], ...values];
+  }
+
+  useEffect(() => {
+    const data = [
+      { personalidade: "Tubarão", porcentagem: pA },
+      { personalidade: "Lobo", porcentagem: pO },
+      { personalidade: "Águia", porcentagem: pI },
+      { personalidade: "Gato", porcentagem: pC },
+    ];
+
+    console.log("Data: ", data);
+
+    setChartData(loadData(data));
+  }, [pA, pO, pI, pC]);
 
   async function handleSend() {
-    setOpen(!open);
-    setState([]);
+    // setOpen(!open);
     setSend(true);
     setAfterSending(true);
-
-    // const response = await api.post("/res", {
-    //   state: 'c',
-    // });
-    // console.log(response);
+    setA(state.filter((item) => item.opcao === "A"));
+    setO(state.filter((item) => item.opcao === "O"));
+    setI(state.filter((item) => item.opcao === "I"));
+    setC(state.filter((item) => item.opcao === "C"));
 
     Swal.fire({
       title: "Sucesso!",
-      text: `Dados enviador com Sucesso! \n `,
+      text: `Dados enviados com Sucesso! \n `,
       icon: "success",
       confirmButtonText: "Ok",
     });
-    setOpen(false);
+    // setOpen(false);
   }
 
   function result() {
     setSendResponse(true);
     setAfterResponse(true);
+
+    console.log("A ", a, "quantidade: ", a.length);
+    console.log("O ", o, "quantidade: ", o.length);
+    console.log("I ", i, "quantidade: ", i.length);
+    console.log("C", c, "quantidade: ", c.length);
+
+    console.log(pA);
+    console.log(pO);
+    console.log(pI);
+    console.log(pC);
   }
 
   function refreshPage() {
@@ -100,6 +126,10 @@ export default function personalidade() {
 
     setOpen(false);
   }
+  const options = {
+    title: "Gráfico de Pizza",
+  };
+
   return (
     <Container>
       <Typography class={classes.typography}>
@@ -692,8 +722,7 @@ export default function personalidade() {
                 onClick={handleSend}
                 size={"large"}
                 sx={{ marginRight: "1rem" }}
-                // disabled={state.length !== 25}
-                disabled={sendResponse === true || afterSending === true}
+                disabled={state.length !== 25 || sendResponse === true || afterSending === true}
               >
                 {" "}
                 Enviar{" "}
@@ -713,7 +742,7 @@ export default function personalidade() {
                 onClick={result}
                 size={"large"}
                 sx={{ marginLeft: "1rem" }}
-                disabled={send === false || afterResponse === true }
+                disabled={send === false || afterResponse === true}
               >
                 {" "}
                 Resultado{" "}
@@ -751,11 +780,34 @@ export default function personalidade() {
             {(() => {
               if (sendResponse === true) {
                 return (
-                  <h1                    className={classes.typography}
-                    style={{ fontSize: "2rem", position: "" }}
-                  >
-                    Resultado
-                  </h1>
+                  <Container>
+                    <h1
+                      className={classes.typography}
+                      style={{ fontSize: "2rem", position: "" }}
+                    >
+                      Resultado
+                    </h1>
+                    <div>
+                      <Chart
+                        chartType="PieChart"
+                        data={chartData}
+                        options={options}
+                        width={"100%"}
+                        height={"400px"}
+                      />
+                    </div>
+                    <div>
+                      <p> Resultados </p>
+                      <p>
+                        {`personalidade Tubarão: ${pA} %`} <br />
+                        {`personalidade Lobo: ${pO} %`} <br />
+                        {`personalidade Águia: ${pI} %`}
+                        <br />
+                        {`personalidade Gato: ${pC} %`}
+                        <br />
+                      </p>
+                    </div>
+                  </Container>
                 );
               }
             })()}

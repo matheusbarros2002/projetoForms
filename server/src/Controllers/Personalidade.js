@@ -1,14 +1,22 @@
-const axios = require('axios');
+const axios = require("axios");
 
 module.exports = {
-    async index(req, res) {
-        const { state } = req.params;
-        try {
-            console.log("aa");
-            return res.json(state)
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json(error);
+  async index(req, res) {
+    const { state } = req.body;
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/avaliacao-comportamental",
+        {
+           body: {
+            state,
+          },
         }
+      );
+      console.log("aa", state);
+      return res.json(response);
+    } catch (error) {
+      console.log("errorr:", error);
+      return res.json(error);
     }
-}
+  },
+};
