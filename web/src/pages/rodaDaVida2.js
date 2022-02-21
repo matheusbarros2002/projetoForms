@@ -70,462 +70,334 @@ export default function RodaDaVida() {
 
   return (
     <Container component="main">
-      <Grid container  >
-        <Grid container item xs={6}>
-          <Grid item xs={10}>
-            <Typography
-              fontSize={"1.2rem"}
-              align="center"
-              marginBottom={"10px"}
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
+            {" "}
+            Qualidade de Vida{" "}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Criatividade hobbies & Diversão
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option}
+              label="Criatividade hobbies & Diversão"
+              onChange={handleChange}
+              fullWidth
             >
-              {" "}
-              Qualidade de Vida{" "}
-            </Typography>
-          </Grid>
-          <Grid container item xs={10} >
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Criatividade hobbies & Diversão
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option}
-                  label="Criatividade hobbies & Diversão"
-                  onChange={handleChange}
-                  fullWidth
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Plenitude e Felicidade
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option2}
-                  label=" Plenitude e Felicidade"
-                  onChange={handleChange2}
-                  fullWidth
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Qualidade de Vida
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option3}
-                  label="Qualidade de Vida"
-                  onChange={handleChange3}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
 
-        <Grid container xs={6}>
-          <Grid item xs={10}>
-            <Typography
-              fontSize={"1.2rem"}
-              align="center"
-              marginBottom={"10px"}
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Plenitude e Felicidade
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option2}
+              label=" Plenitude e Felicidade"
+              onChange={handleChange2}
+              fullWidth
             >
-              {" "}
-              Pessoal{" "}
-            </Typography>
-          </Grid>
-
-          <Grid container item xs={10}>
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Saúde e Disposição
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option4}
-                  label="Saúde e Disposição"
-                  onChange={handleChange4}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Desenvolvimento Intelectual
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option5}
-                  label="Desenvolvimento Intelectual"
-                  onChange={handleChange5}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Equilíbrio Emocional
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option6}
-                  label="Equilíbrio Emocional"
-                  onChange={handleChange6}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
 
-        <Grid container xs={6}>
-          <Grid item xs={10}>
-            <Typography
-              fontSize={"1.2rem"}
-              align="center"
-              marginBottom={"10px"}
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Qualidade de Vida
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option3}
+              label="Qualidade de Vida"
+              onChange={handleChange3}
             >
-              {" "}
-              Profissional{" "}
-            </Typography>
-          </Grid>
-
-          <Grid container item xs={10}>
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Realização e Propósito
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option7}
-                  label="Realização e Propósito"
-                  onChange={handleChange7}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Recursos Financeiros
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option8}
-                  label="Recursos Financeiros"
-                  onChange={handleChange8}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
-            >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Contribuição Social
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option9}
-                  label="Contribuição Social"
-                  onChange={handleChange9}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
 
-        <Grid container xs={6}>
-          <Grid item xs={10}>
-            <Typography
-              fontSize={"1.2rem"}
-              align="center"
-              marginBottom={"10px"}
-            >
-              {" "}
-              Relacionamentos{" "}
-            </Typography>
-          </Grid>
+        <Grid item xs={12}>
+          <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
+            {" "}
+            Pessoal{" "}
+          </Typography>
+        </Grid>
 
-          <Grid container item xs={10}>
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Saúde e Disposição
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option4}
+              label="Saúde e Disposição"
+              onChange={handleChange4}
             >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Família
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option10}
-                  label="Família"
-                  onChange={handleChange10}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
 
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Desenvolvimento Intelectual
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option5}
+              label="Desenvolvimento Intelectual"
+              onChange={handleChange5}
             >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Relacionamento Amoroso
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option11}
-                  label="Relacionamento Amoroso"
-                  onChange={handleChange11}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
 
-            <Grid
-              item
-              xs={12}
-              // sx={{
-              //   marginRight: "5rem",
-              //   marginLeft: "5rem",
-              //   marginBottom: "10px",
-              // }}
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Equilíbrio Emocional
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option6}
+              label="Equilíbrio Emocional"
+              onChange={handleChange6}
             >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  Vida Social
-                </InputLabel>
-                <Select
-                  id="demo-simple-select"
-                  value={option12}
-                  label="Vida Social"
-                  onChange={handleChange12}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
+            {" "}
+            Profissional{" "}
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Realização e Propósito
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option7}
+              label="Realização e Propósito"
+              onChange={handleChange7}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Recursos Financeiros
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option8}
+              label="Recursos Financeiros"
+              onChange={handleChange8}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Contribuição Social
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option9}
+              label="Contribuição Social"
+              onChange={handleChange9}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
+            {" "}
+            Relacionamentos{" "}
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Família
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option10}
+              label="Família"
+              onChange={handleChange10}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Relacionamento Amoroso
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option11}
+              label="Relacionamento Amoroso"
+              onChange={handleChange11}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Vida Social
+            </InputLabel>
+            <Select
+              id="demo-simple-select"
+              value={option12}
+              label="Vida Social"
+              onChange={handleChange12}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
       </Grid>
     </Container>
