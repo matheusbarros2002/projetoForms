@@ -15,13 +15,11 @@ import Container from "@material-ui/core/Container";
 import "@fontsource/pacifico";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
 import Chart from "react-google-charts";
 import _ from "lodash";
 import Swal from "sweetalert2";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import api from "../services/api";
 
 export default function personalidades() {
   const theme = createTheme();
@@ -49,8 +47,6 @@ export default function personalidades() {
   const [afterSending, setAfterSending] = useState(false);
   const [afterResponse, setAfterResponse] = useState(false);
   const [chartData, setChartData] = useState([]);
-
-  
 
   const [a, setA] = useState("");
   const [o, setO] = useState("");
@@ -81,13 +77,12 @@ export default function personalidades() {
       { personalidade: "Gato", porcentagem: pC },
     ];
 
-    console.log("Data: ", data);
-
     setChartData(loadData(data));
   }, [pA, pO, pI, pC]);
 
-  async function handleSend() {
-    // setOpen(!open);
+  async function handleSend(e) {
+    e.preventDefault();
+    setOpen(!open);
     setSend(true);
     setAfterSending(true);
     setA(state.filter((item) => item.opcao === "A"));
@@ -101,33 +96,18 @@ export default function personalidades() {
       icon: "success",
       confirmButtonText: "Ok",
     });
-    // setOpen(false);
+    setOpen(false);
   }
 
   function result() {
     setSendResponse(true);
     setAfterResponse(true);
-
-    console.log("A ", a, "quantidade: ", a.length);
-    console.log("O ", o, "quantidade: ", o.length);
-    console.log("I ", i, "quantidade: ", i.length);
-    console.log("C", c, "quantidade: ", c.length);
-
-    console.log(pA);
-    console.log(pO);
-    console.log(pI);
-    console.log(pC);
   }
 
-  function refreshPage() {
-    setOpen(true);
-
-    window.location.reload();
-
-    setOpen(false);
+  function Clear() {
   }
   const options = {
-    title: "Gráfico de Pizza",
+    title: "Avaliação Comportamental",
   };
 
   return (
@@ -717,12 +697,16 @@ export default function personalidades() {
               <Button
                 variant="contained"
                 id="enviar"
-                endIcon={<SendIcon />}
+                // endIcon={<SendIcon />}
                 type="submit"
                 onClick={handleSend}
                 size={"large"}
                 sx={{ marginRight: "1rem" }}
-                disabled={state.length !== 25 || sendResponse === true || afterSending === true}
+                disabled={
+                  state.length !== 25 ||
+                  sendResponse === true ||
+                  afterSending === true
+                }
               >
                 {" "}
                 Enviar{" "}
@@ -737,7 +721,7 @@ export default function personalidades() {
               <Button
                 variant="contained"
                 id="enviar"
-                endIcon={<SendIcon />}
+                // endIcon={<SendIcon />}
                 type="submit"
                 onClick={result}
                 size={"large"}
@@ -751,24 +735,6 @@ export default function personalidades() {
           </Typography>
         </Grid>
 
-        {/* <Grid item xs={4}>
-          <Typography fontSize={"1.8rem"} align="center">
-            <Stack>
-              <Button
-                variant="contained"
-                id="enviar"
-                endIcon={<SendIcon />}
-                type="submit"
-                onClick={refreshPage}
-                size={"large"}
-                // sx={{ marginLeft: "10rem" }}
-              >
-                {" "}
-                Refazer{" "}
-              </Button>
-            </Stack>
-          </Typography>
-        </Grid> */}
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
@@ -796,21 +762,27 @@ export default function personalidades() {
                         height={"400px"}
                       />
                     </div>
-                    <div>
-                      <p> Resultados </p>
-                      <p>
-                        {`personalidade Tubarão: ${pA} %`} <br />
-                        {`personalidade Lobo: ${pO} %`} <br />
-                        {`personalidade Águia: ${pI} %`}
-                        <br />
-                        {`personalidade Gato: ${pC} %`}
-                        <br />
-                      </p>
-                    </div>
                   </Container>
                 );
               }
             })()}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography fontSize={"1.8rem"} align="center">
+            <Stack>
+              <Button
+                variant="contained"
+                id="enviar"
+                // endIcon={<SendIcon />}
+                type="submit"
+                onClick={Clear}
+                size={"large"}
+              >
+                {" "}
+                Limpar{" "}
+              </Button>
+            </Stack>
           </Typography>
         </Grid>
       </Grid>
