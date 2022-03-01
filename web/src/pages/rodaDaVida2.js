@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { createTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
+import Chart from "react-google-charts";
+import _ from "lodash";
 import Container from "@material-ui/core/Container";
 
 export default function RodaDaVida() {
@@ -18,59 +20,96 @@ export default function RodaDaVida() {
   }));
   const classes = useStyles();
 
-  const [option, setOption] = useState("");
-  const [option2, setOption2] = useState("");
-  const [option3, setOption3] = useState("");
-  const [option4, setOption4] = useState("");
-  const [option5, setOption5] = useState("");
-  const [option6, setOption6] = useState("");
-  const [option7, setOption7] = useState("");
-  const [option8, setOption8] = useState("");
-  const [option9, setOption9] = useState("");
-  const [option10, setOption10] = useState("");
-  const [option11, setOption11] = useState("");
-  const [option12, setOption12] = useState("");
+  const [state, setState] = useState("");
+  const [chartData, setChartData] = useState([]);
+  const [sendResponse, setSendResponse] = useState(false);
 
-  function handleChange(e) {
-    setOption(e.target.value);
+  const [option1, setOption1] = useState("0");
+  const [option2, setOption2] = useState("0");
+  const [option3, setOption3] = useState("0");
+  const [option4, setOption4] = useState("0");
+  const [option5, setOption5] = useState("0");
+  const [option6, setOption6] = useState("0");
+  const [option7, setOption7] = useState("0");
+  const [option8, setOption8] = useState("0");
+  const [option9, setOption9] = useState("0");
+  const [option10, setOption10] = useState("0");
+  const [option11, setOption11] = useState("0");
+  const [option12, setOption12] = useState("0");
+
+  const options = {
+    chart: {
+      title: "Nivel de Satisfação",
+      pieHole: 0.4,
+      is3D: false,
+    },
+  };
+
+  function loadData(data) {
+    let values = _.map(data, (value) => [
+      value.vida,
+      value.value,
+      value.value2,
+      value.value3,
+    ]);
+
+    // console.log("aaaa", [["Area", "1", "2", "3"], ...values]);
+    console.log(values);
+
+    return [["Area", "value", 'value2', "value3"], ...values];
   }
-  function handleChange2(e) {
-    setOption2(e.target.value);
-  }
-  function handleChange3(e) {
-    setOption3(e.target.value);
-  }
-  function handleChange4(e) {
-    setOption4(e.target.value);
-  }
-  function handleChange5(e) {
-    setOption5(e.target.value);
-  }
-  function handleChange6(e) {
-    setOption6(e.target.value);
-  }
-  function handleChange7(e) {
-    setOption7(e.target.value);
-  }
-  function handleChange8(e) {
-    setOption8(e.target.value);
-  }
-  function handleChange9(e) {
-    setOption9(e.target.value);
-  }
-  function handleChange10(e) {
-    setOption10(e.target.value);
-  }
-  function handleChange11(e) {
-    setOption11(e.target.value);
-  }
-  function handleChange12(e) {
-    setOption12(e.target.value);
+
+  useEffect(() => {
+    const data = [
+      {
+        vida: "Qualidade de Vida",
+        value: option1,
+        value2: option2,
+        value3: option3,
+      },
+      // { vida: "Pessoal", value: option2 },
+      {
+        vida: "Profissional",
+        value: option4,
+        value2: option5,
+        value3: option6,
+      },
+      {
+        vida: "Relacionamentos",
+        value: option7,
+        value2: option8,
+        value3: option9,
+      },{
+        vida: "Relacionamentos",
+        value: option10,
+        value2: option11,
+        value3: option12,
+      },
+    ];
+
+    setChartData(loadData(data));
+  }, [
+    option1,
+    option2,
+    option3,
+    option4,
+    option5,
+    option6,
+    option7,
+    option8,
+    option9,
+    option10,
+    option11,
+    option12,
+  ]);
+
+  function handleSend() {
+    console.log(state);
   }
 
   return (
     <Container component="main">
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         <Grid item xs={12}>
           <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
             {" "}
@@ -84,21 +123,21 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option}
+              value={state.data}
               label="Criatividade hobbies & Diversão"
-              onChange={handleChange}
+              onChange={(e) => setOption1(e.target.value)}
               fullWidth
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -110,21 +149,21 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option2}
+              value={state.data}
               label=" Plenitude e Felicidade"
-              onChange={handleChange2}
+              onChange={(e) => setOption2(e.target.value)}
               fullWidth
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -136,20 +175,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option3}
+              value={state.data}
               label="Qualidade de Vida"
-              onChange={handleChange3}
+              onChange={(e) => setOption3(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -168,20 +207,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option4}
+              value={state.data}
               label="Saúde e Disposição"
-              onChange={handleChange4}
+              onChange={(e) => setOption4(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -193,20 +232,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option5}
+              value={state.data}
               label="Desenvolvimento Intelectual"
-              onChange={handleChange5}
+              onChange={(e) => setOption5(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -218,20 +257,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option6}
+              value={state.data}
               label="Equilíbrio Emocional"
-              onChange={handleChange6}
+              onChange={(e) => setOption6(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -250,20 +289,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option7}
+              value={state.data}
               label="Realização e Propósito"
-              onChange={handleChange7}
+              onChange={(e) => setOption7(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -275,20 +314,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option8}
+              value={state.data}
               label="Recursos Financeiros"
-              onChange={handleChange8}
+              onChange={(e) => setOption8(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -300,20 +339,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option9}
+              value={state.data}
               label="Contribuição Social"
-              onChange={handleChange9}
+              onChange={(e) => setOption9(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -332,20 +371,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option10}
+              value={state.data}
               label="Família"
-              onChange={handleChange10}
+              onChange={(e) => setOption10(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -357,20 +396,20 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option11}
+              value={state.data}
               label="Relacionamento Amoroso"
-              onChange={handleChange11}
+              onChange={(e) => setOption11(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -382,22 +421,58 @@ export default function RodaDaVida() {
             </InputLabel>
             <Select
               id="demo-simple-select"
-              value={option12}
+              value={state.data}
               label="Vida Social"
-              onChange={handleChange12}
+              onChange={(e) => setOption12(e.target.value)}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
+              <MenuItem value={"6"}>6</MenuItem>
+              <MenuItem value={"7"}>7</MenuItem>
+              <MenuItem value={"8"}>8</MenuItem>
+              <MenuItem value={"9"}>9</MenuItem>
+              <MenuItem value={"10"}>10</MenuItem>
             </Select>
           </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <FormControl fullWidth>
+            <Button variant="contained" size="large" onClick={handleSend}>
+              Enviar
+            </Button>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography >
+            {(() => {
+              // if (sendResponse === true) {
+              return (
+                <Container>
+                  <h1
+                    className={classes.typography}
+                    style={{ fontSize: "2rem", position: "" }}
+                  >
+                    Resultado
+                  </h1>
+                  <div>
+                    <Chart
+                      chartType="PieChart"
+                      data={chartData}
+                      options={options}
+                      width={"100%"}
+                      height={"400px"}
+                    />
+                  </div>
+                </Container>
+              );
+              // }
+            })()}
+          </Typography>
         </Grid>
       </Grid>
     </Container>
