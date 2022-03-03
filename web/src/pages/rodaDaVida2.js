@@ -166,7 +166,7 @@ export default function RodaDaVida() {
   return (
     <Container component="main">
       <Typography class={classes.typography}>
-        <h1>Roda Da Vidaaaaaaaasaaa</h1>
+        <h1>Roda Da Vida</h1>
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12}>
