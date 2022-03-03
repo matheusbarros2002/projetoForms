@@ -8,6 +8,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { createTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import Chart from "react-google-charts";
+import "@fontsource/pacifico";
 import _ from "lodash";
 import Container from "@material-ui/core/Container";
 
@@ -16,6 +17,10 @@ export default function RodaDaVida() {
   const useStyles = makeStyles(() => ({
     select: {
       // paddingL: "1rem",
+    },
+    typography: {
+      fontFamily: ["pacifico"].join(","),
+      fontSize: "1.1rem",
     },
   }));
   const classes = useStyles();
@@ -40,50 +45,100 @@ export default function RodaDaVida() {
   const options = {
     chart: {
       title: "Nivel de Satisfação",
-      pieHole: 0.4,
-      is3D: false,
+      // pieHole: 0.4,
+      // is3D: false,
     },
   };
 
   function loadData(data) {
     let values = _.map(data, (value) => [
       value.vida,
-      value.value,
-      value.value2,
-      value.value3,
+      value.criatividade,
+      value.plenitude,
+      value.qualidade,
+      value.saude,
+      value.desenvolvimento,
+      value.equilibrio,
+      value.realizacao,
+      value.recursos,
+      value.contribuicao,
+      value.familia,
+      value.relacionamento,
+      value.social,
     ]);
 
     // console.log("aaaa", [["Area", "1", "2", "3"], ...values]);
     console.log(values);
 
-    return [["Area", "value", 'value2', "value3"], ...values];
+    return [
+      [
+        "vida",
+        "Criatividade hobbies & Diversão",
+        "Plenitude e Felicidade",
+        "Qualidade de Vida",
+        "Saúde e Disposição",
+        "Desenvolvimento Intelectual",
+        "Equilíbrio Emocional",
+        "Realização e Propósito",
+        "Recursos Financeiros",
+        "Contribuição Social",
+        "Família",
+        "Relacionamento Amoroso",
+        "Vida Social",
+      ],
+      ...values,
+    ];
   }
 
   useEffect(() => {
     const data = [
       {
-        vida: "Qualidade de Vida",
-        value: option1,
-        value2: option2,
-        value3: option3,
-      },
-      // { vida: "Pessoal", value: option2 },
-      {
-        vida: "Profissional",
-        value: option4,
-        value2: option5,
-        value3: option6,
+        // vida: "Criatividade hobbies & Diversão",
+        criatividade: option1,
       },
       {
-        vida: "Relacionamentos",
-        value: option7,
-        value2: option8,
-        value3: option9,
-      },{
-        vida: "Relacionamentos",
-        value: option10,
-        value2: option11,
-        value3: option12,
+        // vida: "Plenitude e Felicidade",
+        plenitude: option2,
+      },
+      {
+        // vida: "Qualidade de Vida",
+        qualidade: option3,
+      },
+      {
+        // vida: "Saúde e Disposição",
+        saude: option4,
+      },
+      {
+        // vida: "Desenvolvimento Intelectual",
+        desenvolvimento: option5,
+      },
+      {
+        // vida: "Equilíbrio Emocional",
+        equilibrio: option6,
+      },
+      {
+        // vida: "Realização e Propósito",
+        realizacao: option7,
+      },
+      {
+        // vida: "Recursos Financeiros",
+        recursos: option8,
+      },
+      {
+        // vida: "Contribuição Social",
+        contribuicao: option9,
+      },
+      {
+        // vida: "Família",
+        familia: option10,
+      },
+      {
+        // vida: "Relacionamento Amoroso",
+        relacionamento: option11,
+      },
+      {
+        // vida: "Vida Social",
+        sicial: option12,
       },
     ];
 
@@ -104,11 +159,15 @@ export default function RodaDaVida() {
   ]);
 
   function handleSend() {
+    setSendResponse(true);
     console.log(state);
   }
 
   return (
     <Container component="main">
+      <Typography class={classes.typography}>
+        <h1>Roda Da Vida</h1>
+      </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <Typography fontSize={"1.2rem"} align="center" marginBottom={"10px"}>
@@ -448,29 +507,29 @@ export default function RodaDaVida() {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography >
+          <Typography>
             {(() => {
-              // if (sendResponse === true) {
-              return (
-                <Container>
-                  <h1
-                    className={classes.typography}
-                    style={{ fontSize: "2rem", position: "" }}
-                  >
-                    Resultado
-                  </h1>
-                  <div>
-                    <Chart
-                      chartType="PieChart"
-                      data={chartData}
-                      options={options}
-                      width={"100%"}
-                      height={"400px"}
-                    />
-                  </div>
-                </Container>
-              );
-              // }
+              if (sendResponse === true) {
+                return (
+                  <Container>
+                    <h1
+                      className={classes.typography}
+                      style={{ fontSize: "2rem", position: "" }}
+                    >
+                      Resultado
+                    </h1>
+                    <div>
+                      <Chart
+                        chartType="Bar"
+                        data={chartData}
+                        options={options}
+                        width={"100%"}
+                        height={"500px"}
+                      />
+                    </div>
+                  </Container>
+                );
+              }
             })()}
           </Typography>
         </Grid>
